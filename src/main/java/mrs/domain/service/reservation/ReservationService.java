@@ -3,19 +3,15 @@ package mrs.domain.service.reservation;
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.model.ReservableRoomId;
 import mrs.domain.model.Reservation;
-import mrs.domain.model.RoleName;
-import mrs.domain.model.User;
 import mrs.domain.repository.reservation.ReservationRepository;
 import mrs.domain.repository.room.ReservableRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
