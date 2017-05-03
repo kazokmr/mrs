@@ -1,6 +1,5 @@
 package mrs.domain.service.room;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import mrs.domain.model.MeetingRoom;
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.repository.room.MeetingRoomRepository;

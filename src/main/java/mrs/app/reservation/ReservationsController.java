@@ -3,8 +3,6 @@ package mrs.app.reservation;
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.model.ReservableRoomId;
 import mrs.domain.model.Reservation;
-import mrs.domain.model.RoleName;
-import mrs.domain.model.User;
 import mrs.domain.service.reservation.AlreadyReservedException;
 import mrs.domain.service.reservation.ReservationService;
 import mrs.domain.service.reservation.UnavailableReservationException;
