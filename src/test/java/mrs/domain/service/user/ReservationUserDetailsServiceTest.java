@@ -12,8 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -45,7 +44,6 @@ public class ReservationUserDetailsServiceTest {
         userB.setLastName("taro");
         userB.setFirstName("yamada");
         userB.setRoleName(RoleName.USER);
-
     }
 
     @Test
@@ -53,7 +51,7 @@ public class ReservationUserDetailsServiceTest {
         doReturn(userA).when(userRepository).findOne("aaaa");
 
         UserDetails userDetails = service.loadUserByUsername("aaaa");
-        assertThat(userDetails, is(new ReservationUserDetails(userA)));
+        assertThat(userDetails).isEqualTo(new ReservationUserDetails(userA));
     }
 
     @Test
@@ -61,7 +59,7 @@ public class ReservationUserDetailsServiceTest {
         doReturn(userB).when(userRepository).findOne("bbbb");
 
         UserDetails userDetails = service.loadUserByUsername("bbbb");
-        assertThat(userDetails, is(new ReservationUserDetails(userB)));
+        assertThat(userDetails).isEqualTo(new ReservationUserDetails(userB));
     }
 
     @Test(expected = UsernameNotFoundException.class)
