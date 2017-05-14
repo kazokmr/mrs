@@ -20,25 +20,37 @@ public class ReservationService {
   private final ReservableRoomRepository reservableRoomRepository;
   
   @Autowired
-  public ReservationService(ReservationRepository reservationRepository, ReservableRoomRepository reservableRoomRepository) {
+  public ReservationService(
+      ReservationRepository reservationRepository,
+      ReservableRoomRepository reservableRoomRepository
+  ) {
     this.reservationRepository = reservationRepository;
     this.reservableRoomRepository = reservableRoomRepository;
   }
   
   public List<Reservation> findReservations(ReservableRoomId reservableRoomId) {
-    return reservationRepository.findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId);
+    return reservationRepository
+        .findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId);
   }
   
+  /**
+   * Save Reservation.
+   * @param reservation reservation
+   */
   public void reserve(Reservation reservation) {
     ReservableRoomId reservableRoomId = reservation.getReservableRoom().getReservableRoomId();
     
-    ReservableRoom reservableRoom = reservableRoomRepository.findOneForUpdateByReservableRoomId(reservableRoomId);
+    ReservableRoom reservableRoom =
+        reservableRoomRepository.findOneForUpdateByReservableRoomId(reservableRoomId);
     
     if (reservableRoom == null) {
       throw new UnavailableReservationException("入力の日付・部屋の組み合わせは予約できません。");
     }
     
-    boolean overlap = reservationRepository.findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId).stream().anyMatch(x -> x.overlap(reservation));
+    boolean overlap =
+        reservationRepository
+            .findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId)
+            .stream().anyMatch(x -> x.overlap(reservation));
     
     if (overlap) {
       throw new AlreadyReservedException("入力の時間帯はすでに予約済みです。");
@@ -55,13 +67,16 @@ public class ReservationService {
   public Reservation findOne(Integer reservationId) {
     return reservationRepository.findOne(reservationId);
   }
-
-//  public void cancel(Integer reservationId, User requestUser) {
-//    Reservation reservation = reservationRepository.findOne(reservationId);
-//
-//    if (RoleName.ADMIN != requestUser.getRoleName() && !Objects.equals(reservation.getUser().getUserId(), requestUser.getUserId())) {
-//      throw new AccessDeniedException("要求されたキャンセルは許可できません。");
-//    }
-//    reservationRepository.delete(reservation);
-//  }
+  
+  //  public void cancel(Integer reservationId, User requestUser) {
+  //    Reservation reservation = reservationRepository.findOne(reservationId);
+  //
+  //    if (
+  //      RoleName.ADMIN != requestUser.getRoleName() &&
+  //      !Objects.equals(reservation.getUser().getUserId(), requestUser.getUserId())
+  //    ) {
+  //      throw new AccessDeniedException("要求されたキャンセルは許可できません。");
+  //    }
+  //    reservationRepository.delete(reservation);
+  //  }
 }

@@ -18,13 +18,17 @@ public class RoomService {
   private final MeetingRoomRepository meetingRoomRepository;
   
   @Autowired
-  public RoomService(ReservableRoomRepository reservableRoomRepository, MeetingRoomRepository meetingRoomRepository) {
+  public RoomService(
+      ReservableRoomRepository reservableRoomRepository,
+      MeetingRoomRepository meetingRoomRepository
+  ) {
     this.reservableRoomRepository = reservableRoomRepository;
     this.meetingRoomRepository = meetingRoomRepository;
   }
   
   public List<ReservableRoom> findReservableRooms(LocalDate date) {
-    return reservableRoomRepository.findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(date);
+    return reservableRoomRepository
+        .findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(date);
   }
   
   public MeetingRoom findMeetingRoom(Integer roomId) {

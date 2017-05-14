@@ -19,10 +19,22 @@ import javax.validation.Payload;
 @Target({ElementType.TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 public @interface EndTimeMustBeAfterStartTime {
+  /**
+   * Result of Validated Message
+   * @return  ErrorMessage Key
+   */
   String message() default "{mrs.app.reservation.EndTimeMustBeAfterStartTime.message}";
   
+  /**
+   * groups
+   * @return  Class
+   */
   Class<?>[] groups() default {};
   
+  /**
+   * payload
+   * @return Class
+   */
   Class<? extends Payload>[] payload() default {};
   
   @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})

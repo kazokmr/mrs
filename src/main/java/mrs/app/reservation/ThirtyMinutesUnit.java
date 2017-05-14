@@ -18,10 +18,21 @@ import javax.validation.Payload;
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
 @Retention(RUNTIME)
 public @interface ThirtyMinutesUnit {
+  /**
+   * @return message
+   */
   String message() default "(mrs.app.reservation.ThirtyMinutesUnit.message)";
   
+  /**
+   *
+   * @return
+   */
   Class<?>[] groups() default {};
   
+  /**
+   *
+   * @return
+   */
   Class<? extends Payload>[] payload() default {};
   
   @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})

@@ -3,7 +3,8 @@ package mrs.app.reservation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-class EndTimeMustBeAfterStartTimeValidator implements ConstraintValidator<EndTimeMustBeAfterStartTime, ReservationForm> {
+class EndTimeMustBeAfterStartTimeValidator
+    implements ConstraintValidator<EndTimeMustBeAfterStartTime, ReservationForm> {
   private String message;
   
   @Override
@@ -16,8 +17,7 @@ class EndTimeMustBeAfterStartTimeValidator implements ConstraintValidator<EndTim
     if (value.getStartTime() == null || value.getEndTime() == null) {
       return true;
     }
-    boolean isEndTimeMustBeAfterStartTime = value.getEndTime()
-        .isAfter(value.getStartTime());
+    boolean isEndTimeMustBeAfterStartTime = value.getEndTime().isAfter(value.getStartTime());
     if (!isEndTimeMustBeAfterStartTime) {
       context.disableDefaultConstraintViolation();
       context.buildConstraintViolationWithTemplate(message)

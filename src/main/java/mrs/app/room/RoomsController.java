@@ -34,7 +34,10 @@ public class RoomsController {
   }
   
   @RequestMapping(path = "{date}", method = RequestMethod.GET)
-  String listRooms(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date, Model model) {
+  String listRooms(
+      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date,
+      Model model
+  ) {
     List<ReservableRoom> rooms = roomService.findReservableRooms(date);
     model.addAttribute("rooms", rooms);
     return "room/listRooms";

@@ -69,9 +69,16 @@ public class Reservation implements Serializable {
     this.user = user;
   }
   
+  /**
+   * Is Reserved.
+   * @return  boolean
+   */
   public boolean overlap(Reservation reservation) {
     
-    if (!Objects.equals(reservableRoom.getReservableRoomId(), reservation.getReservableRoom().getReservableRoomId())) {
+    ReservableRoomId reservedRoomId = reservableRoom.getReservableRoomId();
+    ReservableRoomId willReserveRoomId = reservation.getReservableRoom().getReservableRoomId();
+    
+    if (!Objects.equals(reservedRoomId, willReserveRoomId)) {
       return false;
     }
     
