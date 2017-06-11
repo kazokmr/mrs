@@ -22,7 +22,7 @@ public class LoginControllerTest {
   }
   
   @Test
-  public void loginformの呼び出しテスト() throws Exception {
+  public void loginFormの呼び出しテスト() throws Exception {
     mockMvc.perform(get("/loginForm"))
         .andExpect(status().isOk())
         .andExpect(forwardedUrl("login/loginForm"));
