@@ -41,13 +41,13 @@
     </tr>
     <tr th:each="reservation : ${reservations}">
         <td>
-            <span th:text="${reservation.startTime}"/>
+            <span th:text="${reservation.startTime}"></span>
             -
-            <span th:text="${reservation.endTime}"/>
+            <span th:text="${reservation.endTime}"></span>
         </td>
         <td>
-            <span th:text="${reservation.user.lastName}"/>
-            <span th:text="${reservation.user.firstName}"/>
+            <span th:text="${reservation.user.lastName}"></span>
+            <span th:text="${reservation.user.firstName}"></span>
         </td>
         <td>
             <form th:action="@{'/reservations/' + ${date} +'/' + ${roomId}}" method="post"

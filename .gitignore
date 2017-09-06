@@ -9,3 +9,5 @@ target/
 *.iml
 ### NetBeans ###
 logfile
+.DS_Store
+uml/
